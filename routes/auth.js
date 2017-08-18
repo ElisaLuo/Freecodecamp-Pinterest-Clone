@@ -3,12 +3,18 @@ const router = express.Router();
 const passport = require('passport');
 const GitHubStrategy = require('passport-github2');
 const User = require('../models/user.models');
+var TwitterStrategy = require('passport-twitter').Strategy;
 
 //twitter consumer key	QgYFdIqwi5vXTRBm4GRgqtHTm
 //twitter consumer secret BvgtMs69d0Wg8bfvV0OvCzMQf8ef4gn3PoR3NwYbEhhyJmYoc9
 
+passport.serializeUser((user, done) => {
+    done(null, user);
+});
 
-router.get('/github', passport.authenticate('github'));
+passport.deserializeUser((user, done) => {
+    done(null, user);
+});
 
 passport.use(new GitHubStrategy({
     clientID: "1dcd32c8d35ca9cf669d",
@@ -31,17 +37,28 @@ passport.use(new GitHubStrategy({
         });
     }
 ));
+passport.use(new TwitterStrategy({
+  consumerKey: "QgYFdIqwi5vXTRBm4GRgqtHTm",
+  consumerSecret: "BvgtMs69d0Wg8bfvV0OvCzMQf8ef4gn3PoR3NwYbEhhyJmYoc9",
+  callbackURL: "https://pinterest-clone-elisal.c9users.io/"
+},
+function(accessToken, refreshToken, profile, done) {
+  process.nextTick(function () {
+    return done(null, profile);
+  });
+}
+));
 
-passport.serializeUser((user, done) => {
-    done(null, user);
-});
-
-passport.deserializeUser((user, done) => {
-    done(null, user);
-});
+router.get('/github', passport.authenticate('github'));
+router.get('/twitter',passport.authenticate('twitter'));
 
 router.get('/github/callback', passport.authenticate('github', {failiureRedirect: '/'}), function(req, res){
     res.redirect('/');
     console.log('logged in');
 });
+router.get('/twitter/callback',
+  passport.authenticate('twitter', { failureRedirect: '/' }),
+  function(req, res) {
+    res.redirect('/');
+  });
 module.exports = router;
