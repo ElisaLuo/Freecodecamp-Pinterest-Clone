@@ -4,12 +4,17 @@
             <a href="/" style="color: black">FFC Pinterest clone</a>
         </div>
         <div class="right menu">
-            <a class="item" href="/users">Users</a>
-            <a class="item" href="/auth/twitter">Twitter</a>
-            <a class="item" href="/auth/facebook">Facebook</a>
-            <a class="item" href="/createNew">+</a>
-            <a class="item" href="/myPosts">My Posts</a>
-            <a class="item" href="/logout">Logout</a>
+            <% if (authenticated){ %>
+                <a class="item" href="/createNew">+</a>
+                <a class="item" href="/users">Users</a>
+                <a class="item" href="/myPosts">My Posts</a>
+                <a class="item" href="/logout">Logout</a>
+            <% }else{ %>
+                <a class="item" href="/users">Users</a>
+                <a class="item" href="/auth/twitter">Twitter</a>
+                <a class="item" href="/auth/facebook">Facebook</a>
+                <a href="/auth/github" class="btn btn-block"><img src = "https://image.flaticon.com/icons/png/512/25/25231.png" width="30px" style="margin-top: 7px"></img></a>
+            <% } %>
         </div>
     </div>
 </div>

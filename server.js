@@ -5,6 +5,11 @@ const passport = require('passport');
 const session = require("express-session");
 const bodyParser = require('body-parser');
 const index = require('./routes/index');
+const auth = require('./routes/auth');
+const createImage = require('./routes/createImage');
+const logout = require('./routes/logout');
+const user = require('./routes/user');
+const myPosts = require('./routes/myPosts');
 
 process.env.NODE_ENV = 'production';
 
@@ -31,6 +36,11 @@ app.set('view engine', 'ejs');
 
 //Sets up links for different sites
 app.use('/', index);
+app.use('/auth', auth);
+//app.use('/createNew', createImage);
+//app.use('/users', user);
+app.use('/logout', logout);
+//app.use('/myPosts', myPosts);
 
 //Starts port
 var port = process.env.PORT || 3000;
