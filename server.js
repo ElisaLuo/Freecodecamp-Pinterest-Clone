@@ -38,7 +38,7 @@ app.set('view engine', 'ejs');
 app.use('/', index);
 app.use('/auth', auth);
 //app.use('/createNew', createImage);
-//app.use('/users', user);
+app.use('/user', user);
 app.use('/logout', logout);
 //app.use('/myPosts', myPosts);
 

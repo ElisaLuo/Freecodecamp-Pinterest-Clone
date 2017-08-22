@@ -6,14 +6,16 @@
         <div class="right menu">
             <% if (authenticated){ %>
                 <a class="item" href="/createNew">+</a>
-                <a class="item" href="/users">Users</a>
+                <a class="item" href="/user">Users</a>
                 <a class="item" href="/myPosts">My Posts</a>
                 <a class="item" href="/logout">Logout</a>
             <% }else{ %>
-                <a class="item" href="/users">Users</a>
+                <a class="item" href="/user">All Users</a>
                 <a class="item" href="/auth/twitter">Twitter</a>
-                <a class="item" href="/auth/facebook">Facebook</a>
-                <a href="/auth/github" class="btn btn-block"><img src = "https://image.flaticon.com/icons/png/512/25/25231.png" width="30px" style="margin-top: 7px"></img></a>
+                <a class="item" href="/auth/google">Google</a>
+                <a class="item" href="/auth/github">
+                    <img src = "https://image.flaticon.com/icons/png/512/25/25231.png"></img>
+                </a>
             <% } %>
         </div>
     </div>
