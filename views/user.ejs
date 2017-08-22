@@ -1,3 +1,29 @@
 <% include header.ejs %>
 <% include nav.ejs %>
-<h1>All Users</h1>
+<div class="ui container">
+    <h1>All Users</h1>
+    <div class="ui middle aligned divided list">
+        <div class="item" style="margin-bottom: 10px; font-size: 15px">
+            <div class="content">
+                <div class="header">Username</div>
+            </div>
+        </div>
+        <% for(var i = 0; i < users.length; i++){ %>
+            <div class="item">
+                <div class="right floated content">
+                    <div class="ui button">View</div>
+                </div>
+                <% if(users[i].source == "Github"){ %>
+                    <img class="ui avatar image" src = "https://image.flaticon.com/icons/png/512/25/25231.png">
+                <% }else if(users[i].source == "Twitter"){ %>
+                    <img class="ui avatar image" src = "https://image.flaticon.com/icons/svg/60/60580.svg">
+                <% }else if(users[i].source == "Google"){ %>
+                    <img class="ui avatar image" src = "http://www.idestudiodontoiatrici.it/wp-content/uploads/2015/01/GooglePlus_logo.png">
+                <% } %>
+                <div class="content">
+                    <div class="header"><%= users[i].username %></div>
+                </div>
+            </div>
+        <% } %>
+    </div>
+</div>

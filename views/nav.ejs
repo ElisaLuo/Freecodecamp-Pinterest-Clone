@@ -5,18 +5,57 @@
         </div>
         <div class="right menu">
             <% if (authenticated){ %>
-                <a class="item" href="/createNew">+</a>
+                <a class="item new">+</a>
                 <a class="item" href="/user">Users</a>
                 <a class="item" href="/myPosts">My Posts</a>
                 <a class="item" href="/logout">Logout</a>
+                <div class="ui modal">
+                    <div class="header">
+                        Create New Post
+                    </div>
+                    <div class="content">
+                        <input id="link" placeholder="Image Link" required></input><br>
+                        <input id="comment" placeholder="Comment"></input>
+                    </div>
+                    <div class="actions">
+                        <div class="ui basic blue button create">
+                            Create
+                        </div>
+                    </div>
+                </div>
             <% }else{ %>
                 <a class="item" href="/user">All Users</a>
-                <a class="item" href="/auth/twitter">Twitter</a>
-                <a class="item" href="/auth/google">Google</a>
+                <a class="item" href="/auth/twitter">
+                    <img src = "https://www.seeklogo.net/wp-content/uploads/2015/09/twitter-square-logo.png" style="width: 25px"></img>
+                </a>
+                <a class="item" href="/auth/google">
+                    <img src = "http://www.idestudiodontoiatrici.it/wp-content/uploads/2015/01/GooglePlus_logo.png" style="width: 25px"></img>
+                </a>
                 <a class="item" href="/auth/github">
-                    <img src = "https://image.flaticon.com/icons/png/512/25/25231.png"></img>
+                    <img src = "https://image.flaticon.com/icons/png/512/25/25231.png" style="width: 25px"></img>
                 </a>
             <% } %>
         </div>
     </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(".new").on('click', function(){
+            $('.ui.modal').modal('show');
+        })
+        $(".create").on('click', function(){
+            $.ajax({
+                url: '/createImage',
+                type: 'POST',
+                data: {
+                    link: $("#link").val(),
+                    comment: $("#comment").val()
+                },
+                success: function(result){
+                    location.reload();
+                }
+            });
+        })
+    })
+</script>

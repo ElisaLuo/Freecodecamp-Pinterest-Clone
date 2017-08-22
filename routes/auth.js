@@ -27,7 +27,8 @@ passport.use(new GitHubStrategy({
             if (err) return done(err);
             if (!user) {
                 var newUser = new User({
-                    username: profile.id,
+                    username: profile.username,
+                    source: "Github"
                 }).save((err, user) => {
                     if (err) throw err;
                     done(null, user);
@@ -47,7 +48,8 @@ passport.use(new TwitterStrategy({
         if (err) return cb(err);
             if (!user) {
                 var newUser = new User({
-                    username: profile.id,
+                    username: profile.username,
+                    source: "Twitter"
                 }).save((err, user) => {
                     if (err) throw err;
                     cb(null, user);
@@ -66,8 +68,10 @@ passport.use(new GoogleStrategy({
     User.findOne({ username: profile.id }, (err, user) => {
         if (err) return cb(err);
             if (!user) {
+                
                 var newUser = new User({
-                    username: profile.id,
+                    username: profile.displayName,
+                    source: "Google"
                 }).save((err, user) => {
                     if (err) throw err;
                     cb(null, user);
