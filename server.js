@@ -37,10 +37,10 @@ app.set('view engine', 'ejs');
 //Sets up links for different sites
 app.use('/', index);
 app.use('/auth', auth);
-//app.use('/createNew', createImage);
+app.use('/createImage', createImage);
 app.use('/user', user);
 app.use('/logout', logout);
-//app.use('/myPosts', myPosts);
+app.use('/myPosts', myPosts);
 
 //Starts port
 var port = process.env.PORT || 3000;

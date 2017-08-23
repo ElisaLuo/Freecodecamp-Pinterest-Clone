@@ -3,9 +3,10 @@ const Schema = mongoose.Schema;
 
 var postSchema = new Schema({
     username: String,
+    userId: String,
     image: String,
     comment: String,
-    likes: {type: Number, default: 0}
+    likedUsers: [{type: String}]
 });
 
 var Post = mongoose.model('post', postSchema);

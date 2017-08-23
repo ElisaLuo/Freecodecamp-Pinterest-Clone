@@ -11,7 +11,7 @@
         <% for(var i = 0; i < users.length; i++){ %>
             <div class="item">
                 <div class="right floated content">
-                    <div class="ui button">View</div>
+                    <a href="/user/<%= users[i]._id %>" class="ui button basic black">View</a>
                 </div>
                 <% if(users[i].source == "Github"){ %>
                     <img class="ui avatar image" src = "https://image.flaticon.com/icons/png/512/25/25231.png">

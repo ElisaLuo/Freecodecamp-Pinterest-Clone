@@ -44,7 +44,7 @@ passport.use(new TwitterStrategy({
   consumerSecret: "BvgtMs69d0Wg8bfvV0OvCzMQf8ef4gn3PoR3NwYbEhhyJmYoc9",
   callbackURL: "https://pinterest-clone-elisal.c9users.io/auth/twitter/callback"
 },function(token, tokenSecret, profile, cb) {
-    User.findOne({ username: profile.id }, (err, user) => {
+    User.findOne({ username: profile.username }, (err, user) => {
         if (err) return cb(err);
             if (!user) {
                 var newUser = new User({
@@ -65,7 +65,7 @@ passport.use(new GoogleStrategy({
   clientSecret: "jYYgqum1O1szP30MriZHSSSz",
   callbackURL: "https://pinterest-clone-elisal.c9users.io/auth/google/callback"
 },function(token, tokenSecret, profile, cb) {
-    User.findOne({ username: profile.id }, (err, user) => {
+    User.findOne({ username: profile.displayName }, (err, user) => {
         if (err) return cb(err);
             if (!user) {
                 

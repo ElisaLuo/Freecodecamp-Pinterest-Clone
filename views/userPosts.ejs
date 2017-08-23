@@ -1,20 +1,20 @@
 <% include header.ejs %>
 <% include nav.ejs %>
 <div class="ui container">
-    <h1>All Posts</h1>
+    <h1><%= user[0].username %>'s Posts</h1>
     <div class="ui masonry grid">
         <% for(var i = 0; i < posts.length; i++){ %>
         <div class="column">
             <div class="ui fluid card">
                 <div class="image">
-                    <image src="<%= posts[i].image %>" onError="this.onerror=null; this.src='https://errorcodelist.com/wp-content/uploads/2016/09/error-triangle_318-27867.jpg'">
+                    <image src="<%= posts[i].image %>">
                 </div>
                 <div class="content">
                     <p><%= posts[i].comment %></p>
-                    <p>by <a href="/user/<%= posts[i].userId %>"><%= posts[i].username %></a></p>
+                    <p>by <%= posts[i].username %></p>
                 </div>
                 <div class="extra content">
-                    <a class="ui button basic red liked"><%= posts[i].likedUsers.length %> Likes</a>
+                    <a class="ui button basic red like" id="<%= posts[i]._id %>"><%= posts[i].likedUsers.length %> Likes</a>
                 </div>
             </div>
         </div>
@@ -23,12 +23,7 @@
 </div>
 <script type="text/javascript">
     $(document).ready(function(){
-        /*function imgError(image){
-            image.onerror="";
-            image.src="https://errorcodelist.com/wp-content/uploads/2016/09/error-triangle_318-27867.jpg";
-            return true;
-        }*/
-        $('.liked').click(function(){
+        $('.like').click(function(){
             $.ajax({
                 url: '/user',
                 type: 'POST',
@@ -39,7 +34,7 @@
                     location.reload();
                 }
             });
-        }
-        location.reload();
-    })
+            location.reload();
+        })
+    });
 </script>

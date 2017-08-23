@@ -14,11 +14,11 @@
                         Create New Post
                     </div>
                     <div class="content">
-                        <input id="link" placeholder="Image Link" required></input><br>
-                        <input id="comment" placeholder="Comment"></input>
+                        <input id="link" class="add" placeholder="Image Link" required><br>
+                        <input id="comment" class="add" placeholder="Comment">
                     </div>
                     <div class="actions">
-                        <div class="ui basic blue button create">
+                        <div class="ui basic blue button" id="create">
                             Create
                         </div>
                     </div>
@@ -44,18 +44,22 @@
         $(".new").on('click', function(){
             $('.ui.modal').modal('show');
         })
-        $(".create").on('click', function(){
-            $.ajax({
-                url: '/createImage',
-                type: 'POST',
-                data: {
-                    link: $("#link").val(),
-                    comment: $("#comment").val()
-                },
-                success: function(result){
-                    location.reload();
-                }
-            });
+        $("#create").click( function(){
+            if($("#link").val().length == 0){
+                alert('Please enter a link for the image');
+            }else{
+                $.ajax({
+                    url: '/createImage',
+                    type: 'POST',
+                    data: {
+                        link: $("#link").val(),
+                        comment: $("#comment").val()
+                    },
+                    success: function(result){
+                        location.reload();
+                    }
+                });
+            }
         })
     })
 </script>
