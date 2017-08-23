@@ -7,7 +7,7 @@
         <div class="column">
             <div class="ui fluid card">
                 <div class="image">
-                    <image src="<%= posts[i].image %>">
+                    <image src="<%= posts[i].image %>" onError="this.onerror=null; this.src='https://errorcodelist.com/wp-content/uploads/2016/09/error-triangle_318-27867.jpg'">
                 </div>
                 <div class="content">
                     <p><%= posts[i].comment %></p>

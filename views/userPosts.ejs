@@ -7,15 +7,17 @@
         <div class="column">
             <div class="ui fluid card">
                 <div class="image">
-                    <image src="<%= posts[i].image %>">
+                    <image src="<%= posts[i].image %>" onError="this.onerror=null; this.src='https://errorcodelist.com/wp-content/uploads/2016/09/error-triangle_318-27867.jpg'">
                 </div>
                 <div class="content">
                     <p><%= posts[i].comment %></p>
                     <p>by <%= posts[i].username %></p>
                 </div>
-                <div class="extra content">
-                    <a class="ui button basic red like" id="<%= posts[i]._id %>"><%= posts[i].likedUsers.length %> Likes</a>
-                </div>
+                <% if(authenticated){ %>
+                    <div class="extra content">
+                        <a class="ui button basic red liked"><%= posts[i].likedUsers.length %> Likes</a>
+                    </div>
+                <% } %>
             </div>
         </div>
         <% } %>
