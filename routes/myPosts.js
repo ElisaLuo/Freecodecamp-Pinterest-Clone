@@ -7,19 +7,30 @@ router.get('/', function(req, res){
         if(err){
             console.log(err);
         }
-        res.render('myPosts',{
-            authenticated: req.isAuthenticated(),
-            posts: post
-        });
+        if(req.isAuthenticated() == false){
+            res.render('myPosts',{
+                authenticated: req.isAuthenticated(),
+                posts: post,
+            });
+        }else{
+            res.render('myPosts',{
+                authenticated: req.isAuthenticated(),
+                posts: post,
+                user: req.user.username
+            });
+        }
+        
     })
 });
-router.delete('/', function(req, res){
+router.post('/', function(req, res){
+    console.log(req.headers.post);
     Post.findByIdAndRemove(req.headers.post, function(err){
         if(err){
             console.log(err);
         }
+        console.log("deleted");
+        res.redirect('back');
     })
-    res.redirect('/myPosts');
 })
 
 module.exports = router;

@@ -7,10 +7,19 @@ router.get('/', function(req, res){
         if(err){
             console.log(err);
         }
-        res.render('index',{
+        if(req.isAuthenticated() == false){
+            res.render('index',{
+                authenticated: req.isAuthenticated(),
+                posts: posts,
+            });
+        }else{
+            res.render('index',{
             authenticated: req.isAuthenticated(),
-            posts: posts
+            posts: posts,
+            user: req.user.username
         });
+        }
+        
     })
 });
 

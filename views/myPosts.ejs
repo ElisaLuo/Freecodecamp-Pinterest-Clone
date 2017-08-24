@@ -13,7 +13,7 @@
                     <p><%= posts[i].comment %></p>
                 </div>
                 <div class="extra content">
-                    <a class="ui button basic red"><%= posts[i].likedUsers.length %> Likes</a>
+                    <a class="ui button basic red liked" id="<%= posts[i]._id %>"><%= posts[i].likedUsers.length %> Likes</a>
                     <a class="ui button red delete" id="<%= posts[i]._id %>">Delete</a>
                 </div>
             </div>
@@ -24,18 +24,33 @@
 <script type="text/javascript">
     $(document).ready(function(){
         $('.delete').click(function(){
+            //alert($(this).attr("id"));
             if(confirm("Delete Post?")){
                 $.ajax({
                     url: '/myPosts',
-                    type: 'DELETE',
+                    type: 'POST', //uses post instead of delete because certain browsers does not allow the delete method to run
                     headers: {
-                        "post": $(this).attr("id")
+                        "Post": $(this).attr("id")
                     },
-                    success: function(){
+                    success: function(headers) {
                         location.reload();
                     }
                 });
             }
+            
+        });
+        $('.liked').click(function(){
+            $.ajax({
+                url: '/user',
+                type: 'POST',
+                data:{
+                    post: $(this).attr("id")
+                },
+                success: function(){
+                    location.reload();
+                }
+            });
+            location.reload();
             location.reload();
         });
     })

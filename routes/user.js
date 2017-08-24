@@ -8,10 +8,19 @@ router.get('/', function(req, res){
         if(err){
             console.log(err);
         }
-        res.render('user',{
-            authenticated: req.isAuthenticated(),
-            users: user
-        });
+        if(req.isAuthenticated() == false){
+            res.render('user',{
+                authenticated: req.isAuthenticated(),
+                users: user
+            });
+        }else{
+            res.render('user',{
+                authenticated: req.isAuthenticated(),
+                users: user,
+                user: req.user.username
+            });
+        }
+        
     })
 });
 router.get('/:userId', function(req, res){
@@ -23,11 +32,21 @@ router.get('/:userId', function(req, res){
             if(err){
                 console.log(err);
             }
-            res.render('userPosts',{
-                authenticated: req.isAuthenticated(),
-                user: user,
-                posts: post
-            });
+            if(req.isAuthenticated() == false){
+                res.render('userPosts',{
+                    authenticated: req.isAuthenticated(),
+                    users: user,
+                    posts: post
+                });
+            }else{
+                res.render('userPosts',{
+                    authenticated: req.isAuthenticated(),
+                    users: user,
+                    posts: post,
+                    user: req.user.username
+                });
+            }
+            
         })
     })
 });

@@ -1,7 +1,7 @@
 <% include header.ejs %>
 <% include nav.ejs %>
 <div class="ui container">
-    <h1><%= user[0].username %>'s Posts</h1>
+    <h1><%= users[0].username %>'s Posts</h1>
     <div class="ui masonry grid">
         <% for(var i = 0; i < posts.length; i++){ %>
         <div class="column">
@@ -15,7 +15,7 @@
                 </div>
                 <% if(authenticated){ %>
                     <div class="extra content">
-                        <a class="ui button basic red liked"><%= posts[i].likedUsers.length %> Likes</a>
+                        <a class="ui button basic red liked" id="<%= posts[i]._id %>"><%= posts[i].likedUsers.length %> Likes</a>
                     </div>
                 <% } %>
             </div>
@@ -25,7 +25,7 @@
 </div>
 <script type="text/javascript">
     $(document).ready(function(){
-        $('.like').click(function(){
+        $('.liked').click(function(){
             $.ajax({
                 url: '/user',
                 type: 'POST',
@@ -36,6 +36,7 @@
                     location.reload();
                 }
             });
+            location.reload();
             location.reload();
         })
     });

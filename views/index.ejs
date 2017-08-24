@@ -15,7 +15,7 @@
                 </div>
                 <% if(authenticated){ %>
                     <div class="extra content">
-                        <a class="ui button basic red liked"><%= posts[i].likedUsers.length %> Likes</a>
+                        <a class="ui button basic red liked" id="<%= posts[i]._id %>"><%= posts[i].likedUsers.length %> Likes</a>
                     </div>
                 <% } %>
             </div>
@@ -36,7 +36,8 @@
                     location.reload();
                 }
             });
-        }
-        location.reload();
+            location.reload();
+        })
+        
     })
 </script>
