@@ -14,11 +14,11 @@
                     <a href="/user/<%= users[i]._id %>" class="ui button basic black">View</a>
                 </div>
                 <% if(users[i].source == "Github"){ %>
-                    <img class="ui avatar image" src = "https://image.flaticon.com/icons/png/512/25/25231.png">
+                    <img class="ui avatar image" src = "github.png">
                 <% }else if(users[i].source == "Twitter"){ %>
-                    <img class="ui avatar image" src = "https://image.flaticon.com/icons/svg/60/60580.svg">
+                    <img class="ui avatar image" src = "twitter.png">
                 <% }else if(users[i].source == "Google"){ %>
-                    <img class="ui avatar image" src = "http://www.idestudiodontoiatrici.it/wp-content/uploads/2015/01/GooglePlus_logo.png">
+                    <img class="ui avatar image" src = "google.png">
                 <% } %>
                 <div class="content">
                     <div class="header"><%= users[i].username %></div>

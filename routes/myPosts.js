@@ -23,12 +23,10 @@ router.get('/', function(req, res){
     })
 });
 router.post('/', function(req, res){
-    console.log(req.headers.post);
     Post.findByIdAndRemove(req.headers.post, function(err){
         if(err){
             console.log(err);
         }
-        console.log("deleted");
         res.redirect('back');
     })
 })
