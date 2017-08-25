@@ -5,16 +5,11 @@
         </div>
         <div class="right menu">
             <% if (authenticated){ %>
+                <a class="item">Hi <%= user %></a>
                 <a class="item new">+</a>
                 <a class="item" href="/user">Users</a>
-                <div class="ui simple dropdown item">
-                    <span>Hi <%= user %></span>
-                    <i class="dropdown icon"></i>
-                    <div class="menu">
-                        <div class="item"><a href="/myPosts">My Posts</a></div>
-                        <div class="item"><a href="/logout">Logout</a></div>
-                    </div>
-                </div>
+                <a class="item" href="/myPosts">My Posts</a>
+                <a class="item" href="/logout">Logout</a>
                 <div class="ui modal">
                     <div class="header">
                         Create New Post

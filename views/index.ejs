@@ -27,6 +27,7 @@
     $(document).ready(function(){
         $('.liked').click(function(){
             $.ajax({
+                crossOrigin: true,
                 url: '/user',
                 type: 'POST',
                 data:{
@@ -34,9 +35,14 @@
                 },
                 success: function(){
                     location.reload();
+                },
+                error: function(err){
+                    alert(JSON.stringify(err));
+                },
+                complete: function(){
+                    location.reload();
                 }
             });
-            location.reload();
         })
         
     })

@@ -31,7 +31,7 @@
                     type: 'POST', //uses post instead of delete because certain browsers does not allow the delete method to run
                     headers: {
                         "Post": $(this).attr("id")
-                    },
+                    },// Only POST and GET works on all browsers, PUT and DELETE are not supported by all browsers
                     success: function(headers) {
                         location.reload();
                     }

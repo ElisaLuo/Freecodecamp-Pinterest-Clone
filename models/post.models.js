@@ -6,7 +6,7 @@ var postSchema = new Schema({
     userId: String,
     image: String,
     comment: String,
-    likedUsers: [{type: String}]
+    likedUsers: [{type: String, default: ""}]
 });
 
 var Post = mongoose.model('post', postSchema);

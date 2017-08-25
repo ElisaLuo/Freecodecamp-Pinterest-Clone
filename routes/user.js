@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Post = require("../models/post.models");
 const User = require("../models/user.models");
+var likedUser = [];
 
 router.get('/', function(req, res){
     User.find({}, function(err, user){
@@ -51,13 +52,37 @@ router.get('/:userId', function(req, res){
     })
 });
 router.post('/', function(req, res){
-    Post.findOneAndUpdate(
-        {_id: req.body.post},
-        {$addToSet: {'likedUsers': req.user.username}},
-        {new: true},
-        function (err, post) {
-            if (err) throw err;
+    Post.find({_id: req.body.post}, function(err, posts){
+        if(err){
+            console.log(err);
         }
-    )
+        likedUser = [];
+        likedUser=posts[0].likedUsers;
+        if(likedUser.indexOf(req.user.username) === -1){ //Should be inside the Post.find method
+            Post.findOneAndUpdate(
+                {_id: req.body.post},
+                {$addToSet: {likedUsers: req.user.username}},
+                {new: true},
+                function (err, post) {
+                    if(err){
+                        console.log(err);
+                    }
+                }
+            )
+        }
+        else{
+            Post.findOneAndUpdate(
+                {_id: req.body.post},
+                {$pull: {likedUsers: req.user.username}},
+                {new: true},
+                function (err, post) {
+                    if(err){
+                        console.log(err);
+                    }
+                }
+            )
+        }
+    });
+    res.redirect('back');
 })
 module.exports = router;
