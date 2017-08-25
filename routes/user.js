@@ -61,7 +61,7 @@ router.post('/', function(req, res){
         if(likedUser.indexOf(req.user.username) === -1){ //Should be inside the Post.find method
             Post.findOneAndUpdate(
                 {_id: req.body.post},
-                {$addToSet: {likedUsers: req.user.username}},
+                {$addToSet: {likedUsers: req.user.username}, $set:{liked: true}},
                 {new: true},
                 function (err, post) {
                     if(err){
@@ -73,7 +73,7 @@ router.post('/', function(req, res){
         else{
             Post.findOneAndUpdate(
                 {_id: req.body.post},
-                {$pull: {likedUsers: req.user.username}},
+                {$pull: {likedUsers: req.user.username}, $set:{liked: false}},
                 {new: true},
                 function (err, post) {
                     if(err){

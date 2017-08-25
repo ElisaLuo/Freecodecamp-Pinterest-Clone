@@ -13,7 +13,13 @@
                     <p><%= posts[i].comment %></p>
                 </div>
                 <div class="extra content">
-                    <a class="ui button basic red liked" id="<%= posts[i]._id %>"><%= posts[i].likedUsers.length %> Likes</a>
+                    <div class="likes ui basic red"><%= posts[i].likedUsers.length %> Likes </div>
+                    <% if(posts[i].liked === false){ %>
+                        <a class="ui basic button red liked" id="<%= posts[i]._id %>">Like</a>
+                    <% }else{ %>
+                        <a class="ui basic button red liked unlike" id="<%= posts[i]._id %>"><span>Liked</span></a>
+                            
+                    <% } %>
                     <a class="ui button red delete" id="<%= posts[i]._id %>">Delete</a>
                 </div>
             </div>
