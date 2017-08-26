@@ -20,7 +20,7 @@ passport.deserializeUser((user, done) => {
 passport.use(new GitHubStrategy({
     clientID: "1dcd32c8d35ca9cf669d",
     clientSecret: "e854f6f5a189f5a622ae9dda14e0661da777b592",
-    callbackURL: "https://pinterest-clone-elisal.c9users.io/auth/github/callback"
+    callbackURL: "http://photomaniac.herokuapp.com/auth/github/callback"
 }, (accessToken, refreshToken, profile, done) => {
         //create user
         User.findOne({ username: profile.username }, (err, user) => {
@@ -42,7 +42,7 @@ passport.use(new GitHubStrategy({
 passport.use(new TwitterStrategy({
   consumerKey: "QgYFdIqwi5vXTRBm4GRgqtHTm",
   consumerSecret: "BvgtMs69d0Wg8bfvV0OvCzMQf8ef4gn3PoR3NwYbEhhyJmYoc9",
-  callbackURL: "https://pinterest-clone-elisal.c9users.io/auth/twitter/callback"
+  callbackURL: "http://photomaniac.herokuapp.com/auth/twitter/callback"
 },function(token, tokenSecret, profile, cb) {
     User.findOne({ username: profile.username }, (err, user) => {
         if (err) return cb(err);
@@ -63,7 +63,7 @@ passport.use(new TwitterStrategy({
 passport.use(new GoogleStrategy({
   clientId: "173588911532-2ed3av3agk4hqfhndvdeejva9t383pe6.apps.googleusercontent.com",
   clientSecret: "jYYgqum1O1szP30MriZHSSSz",
-  callbackURL: "https://pinterest-clone-elisal.c9users.io/auth/google/callback"
+  callbackURL: "http://photomaniac.herokuapp.com/auth/google/callback"
 },function(token, tokenSecret, profile, cb) {
     User.findOne({ username: profile.displayName }, (err, user) => {
         if (err) return cb(err);
