@@ -3,7 +3,7 @@
 <div class="ui container">
     <h1><%= users[0].username %>'s Posts</h1>
     <div class="ui masonry grid">
-        <% for(var i = 0; i < posts.length; i++){ %>
+        <% for(var i = posts.length - 1; i >= 0 ; i--){ %>
         <div class="column">
             <div class="ui fluid card">
                 <div class="image">
@@ -16,7 +16,7 @@
                 <% if(authenticated){ %>
                     <div class="extra content">
                         <div class="likes ui basic red"><%= posts[i].likedUsers.length %> Likes </div>
-                        <% if(posts[i].liked === false){ %>
+                        <% if(posts[i].likedUsers.indexOf(user) == -1){ %> <!-- Gotta do index of to make sure the user has liked / not liked yet -->
                             <a class="ui basic button red liked" id="<%= posts[i]._id %>">Like</a>
                         <% }else{ %>
                             <a class="ui basic button red liked unlike" id="<%= posts[i]._id %>"><span>Liked</span></a>
@@ -32,6 +32,7 @@
     $(document).ready(function(){
         $('.liked').click(function(){
             $.ajax({
+                crossOrigin: true,
                 url: '/user',
                 type: 'POST',
                 data:{

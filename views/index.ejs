@@ -3,11 +3,16 @@
 <div class="ui container">
     <h1>All Posts</h1>
     <div class="ui masonry grid">
-        <% for(var i = 0; i < posts.length; i++){ %>
+        <% for(var i = posts.length-1; i >= 0 ; i--){ %>
         <div class="column">
             <div class="ui fluid card">
                 <div class="image">
-                    <image src="<%= posts[i].image %>" onError="this.onerror=null; this.src='error.png'">
+                    <image src="<%= posts[i].image %>" style="padding: 0px;" class="image-button ui button" id="<%= i %>" onError="this.onerror=null; this.src='error.png'">
+                </div>
+                <div class="ui modal mini <%= i %>" style="width: 65%">
+                    <div class="content">
+                        <image src="<%= posts[i].image %>" onError="this.onerror=null; this.src='error.png'" style="width: 100%"/>
+                    </div>
                 </div>
                 <div class="content">
                     <p><%= posts[i].comment %></p>
@@ -49,6 +54,11 @@
                 }
             });
         })
-        
+        var post;
+        $('.image-button.ui.button').click(function(){
+            post=$(this).attr("id");
+            post = post.split(" ").join(".");
+            $(".mini.modal." + post).modal("show");
+        })
     })
 </script>

@@ -20,7 +20,7 @@ passport.deserializeUser((user, done) => {
 passport.use(new GitHubStrategy({
     clientID: "1dcd32c8d35ca9cf669d",
     clientSecret: "e854f6f5a189f5a622ae9dda14e0661da777b592",
-    callbackURL: "http://photomaniac.herokuapp.com/auth/github/callback"
+    callbackURL: "https://pinterest-clone-elisal.c9users.io/auth/github/callback"
 }, (accessToken, refreshToken, profile, done) => {
         //create user
         User.findOne({ username: profile.username }, (err, user) => {

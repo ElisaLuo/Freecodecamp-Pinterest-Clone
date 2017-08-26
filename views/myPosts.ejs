@@ -3,7 +3,7 @@
 <div class="ui container">
     <h1>My Posts</h1>
     <div class="ui masonry grid">
-        <% for(var i = 0; i < posts.length; i++){ %>
+        <% for(var i = posts.length - 1; i >= 0 ; i--){ %>
         <div class="column">
             <div class="ui fluid card">
                 <div class="image">
@@ -12,20 +12,23 @@
                 <div class="content">
                     <p><%= posts[i].comment %></p>
                 </div>
-                <div class="extra content">
-                    <div class="likes ui basic red"><%= posts[i].likedUsers.length %> Likes </div>
-                    <% if(posts[i].liked === false){ %>
-                        <a class="ui basic button red liked" id="<%= posts[i]._id %>">Like</a>
-                    <% }else{ %>
-                        <a class="ui basic button red liked unlike" id="<%= posts[i]._id %>"><span>Liked</span></a>
-                            
-                    <% } %>
-                    <a class="ui button red delete" id="<%= posts[i]._id %>">Delete</a>
-                </div>
+                <% if(authenticated){ %>
+                    <div class="extra content">
+                        <div class="likes ui basic red"><%= posts[i].likedUsers.length %> Likes </div>
+                        <% if(posts[i].likedUsers.indexOf(user) == -1){ %> <!-- Gotta do index of to make sure the user has liked / not liked yet -->
+                            <a class="ui basic button red liked" id="<%= posts[i]._id %>">Like</a>
+                            <a class="ui button red delete" id="<%= posts[i]._id %>">Delete</a>
+                        <% }else{ %>
+                            <a class="ui basic button red liked unlike" id="<%= posts[i]._id %>"><span>Liked</span></a>
+                            <a class="ui button red delete" id="<%= posts[i]._id %>">Delete</a>
+                        <% } %>
+                    </div>
+                <% } %>
             </div>
         </div>
         <% } %>
     </div>
+    
 </div>
 <script type="text/javascript">
     $(document).ready(function(){
@@ -47,6 +50,7 @@
         });
         $('.liked').click(function(){
             $.ajax({
+                crossOrigin: true,
                 url: '/user',
                 type: 'POST',
                 data:{
