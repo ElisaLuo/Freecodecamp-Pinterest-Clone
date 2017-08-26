@@ -18,9 +18,6 @@
                     <p><%= posts[i].comment %></p>
                     <p>by <a href="/user/<%= posts[i].userId %>"><%= posts[i].username %></a></p>
                 </div>
-                <div class="content">
-                    <p><%= posts[i].comment %></p>
-                </div>
                 <% if(authenticated){ %>
                     <div class="extra content">
                         <div class="likes ui basic red"><%= posts[i].likedUsers.length %> Likes </div>
