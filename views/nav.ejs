@@ -1,7 +1,13 @@
 <div class="ui menu">
     <div class="ui container">
         <div class="header item">
-            <a href="/" style="color: black">FFC Pinterest clone</a>
+            <a href="/" style="color: black">
+                <img src = "/favicon.ico" style="width: 25px"></img>
+            </a>
+            <a href="/" style="color: black; font-size: 25px;">
+                PhotoManiac
+            </a>
+            
         </div>
         <div class="right menu">
             <% if (authenticated){ %>
@@ -28,7 +34,7 @@
                 <a class="item" href="/user">All Users</a>
                 <a class="item" href="/auth/twitter">
                     <img src = "/twitter.png" style="width: 25px"></img>
-                </a>
+                </a> <!--Images has to have the / before so the link would be directly /(image name)-->
                 <a class="item" href="/auth/google">
                     <img src = "/google.png" style="width: 25px"></img>
                 </a>
