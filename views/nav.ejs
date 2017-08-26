@@ -16,7 +16,7 @@
                 <a class="item" href="/user">Users</a>
                 <a class="item" href="/myPosts">My Posts</a>
                 <a class="item" href="/logout">Logout</a>
-                <div class="ui modal">
+                <div class="ui modal search">
                     <div class="header">
                         Create New Post
                     </div>
@@ -49,7 +49,7 @@
 <script type="text/javascript">
     $(document).ready(function(){
         $(".new").on('click', function(){
-            $('.ui.modal').modal('show');
+            $('.ui.modal.search').modal('show');
         })
         $("#create").click( function(){
             if($("#link").val().length == 0){
