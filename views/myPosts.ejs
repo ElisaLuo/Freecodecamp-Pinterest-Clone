@@ -7,7 +7,16 @@
         <div class="column">
             <div class="ui fluid card">
                 <div class="image">
-                    <image src="<%= posts[i].image %>" onError="this.onerror=null; this.src='error.png'">
+                    <image src="<%= posts[i].image %>" style="padding: 0px;" class="image-button ui button" id="<%= i %>" onError="this.onerror=null; this.src='error.png'">
+                </div>
+                <div class="ui modal mini <%= i %>">
+                    <div class="content">
+                        <image src="<%= posts[i].image %>" onError="this.onerror=null; this.src='error.png'" style="width: 100%"/>
+                    </div>
+                </div>
+                <div class="content">
+                    <p><%= posts[i].comment %></p>
+                    <p>by <a href="/user/<%= posts[i].userId %>"><%= posts[i].username %></a></p>
                 </div>
                 <div class="content">
                     <p><%= posts[i].comment %></p>
@@ -63,5 +72,11 @@
             location.reload();
             location.reload();
         });
+        var post;
+        $('.image-button.ui.button').click(function(){
+            post=$(this).attr("id");
+            post = post.split(" ").join(".");
+            $(".mini.modal." + post).modal("show");
+        })
     })
 </script>
