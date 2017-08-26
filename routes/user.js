@@ -69,6 +69,16 @@ router.post('/', function(req, res){
                     }
                 }
             )
+            User.findOneAndUpdate({username: req.user.username}, 
+                {$addToSet: {likedPosts: req.body.post}},
+                {new: true},
+                function(err, user){
+                    if(err){
+                        console.log(err)
+                    }
+                    
+                }
+            )
         }
         else{
             Post.findOneAndUpdate(
@@ -78,6 +88,15 @@ router.post('/', function(req, res){
                 function (err, post) {
                     if(err){
                         console.log(err);
+                    }
+                }
+            )
+            User.findOneAndUpdate({username: req.user.username}, 
+                {$pull: {likedPosts: req.body.post}},
+                {new: true},
+                function(err, user){
+                    if(err){
+                        console.log(err)
                     }
                 }
             )
