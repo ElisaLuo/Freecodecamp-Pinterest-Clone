@@ -45,10 +45,14 @@
                 },
                 success: function(){
                     location.reload();
+                },
+                error: function(err){
+                    alert(JSON.stringify(err));
+                },
+                complete: function(){
+                    location.reload();
                 }
             });
-            location.reload();
-            location.reload();
         })
         var post;
         $('.image-button.ui.button').click(function(){
