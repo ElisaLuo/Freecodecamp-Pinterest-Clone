@@ -26,9 +26,9 @@
                         <input id="comment" class="add" placeholder="Comment" value="">
                     </div>
                     <div class="actions">
-                        <div class="ui basic blue button" id="create">
+                        <button class="ui basic blue button" onclick="ClearFields();" id="create">
                             Create
-                        </div>
+                        </button>
                     </div>
                 </div>
             <% }else{ %>
@@ -53,6 +53,8 @@
             $('.ui.modal.search').modal('show');
         })
         $("#create").click( function(){
+            
+            $("#comment").value = "";
             if($("#link").val().length == 0){
                 alert('Please enter a link for the image');
             }else{
@@ -65,6 +67,8 @@
                     },
                     success: function(result){
                         location.reload();
+                        document.getElementById("link").value = "";
+                        document.getElementById("comment").value = "";
                     }
                 });
             }
